@@ -1,0 +1,43 @@
+
+<script type='text/javascript' src='astar.js'></script>
+<script type='text/javascript'>
+
+    var graphWithWeight = new Graph([
+	[0.75, 1, 1, 1, 0, 0, 1, 0],
+	[0.75, 1.2, 1.2, 1.2, 1, 1.2, 1, 0.75],
+	[0.75, 0.75, 0.75, 0.9, 0.75, 0.75, 0.75, 0.75],
+    ]);
+
+    var startWithWeight = graphWithWeight.grid[1][0];
+    var endWithWeight = graphWithWeight.grid[1][7];
+    var resultWithWeight = astar.search(graphWithWeight, startWithWeight, endWithWeight);
+    var manual_path = [
+      graphWithWeight.grid[2][0],
+      graphWithWeight.grid[2][1],
+      graphWithWeight.grid[2][2],
+      graphWithWeight.grid[2][3],
+      graphWithWeight.grid[2][4],
+      graphWithWeight.grid[2][5],
+      graphWithWeight.grid[2][6],
+      graphWithWeight.grid[2][7],
+      graphWithWeight.grid[1][7],
+      ];
+
+    function getWeight(path) {
+      var total = 0;
+      for (var i in path) {
+	var node = path[i];
+	total += node.weight;
+      }
+      return total;
+    }
+
+    var algorithm_total_weight = getWeight(resultWithWeight);
+    console.log("algorithm_total_weight");
+    console.log(algorithm_total_weight);
+    var manual_total_weight = getWeight(manual_path);
+    console.log("manual_total_weight");
+    console.log(manual_total_weight);
+
+</script>
+
