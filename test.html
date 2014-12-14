@@ -32,12 +32,42 @@
       return total;
     }
 
+  // helper function
+
+  if (!String.prototype.format) {
+    String.prototype.format = function() {
+      var args = arguments;
+      return this.replace(/{(\d+)}/g, function(match, number) { 
+	return typeof args[number] != 'undefined'
+	  ? args[number]
+	  : match
+	  ;
+      });
+    };
+  }
+
+    console.log("resultWithWeight");
+    console.log(resultWithWeight);
     var algorithm_total_weight = getWeight(resultWithWeight);
     console.log("algorithm_total_weight");
     console.log(algorithm_total_weight);
+
+    console.log("----------------------");
+
+    console.log("manual_path");
+    console.log(manual_path);
     var manual_total_weight = getWeight(manual_path);
     console.log("manual_total_weight");
     console.log(manual_total_weight);
+
+    console.log("----------------------");
+
+    if (algorithm_total_weight > manual_total_weight) {
+      throw new Error('Algorithm sub-optimal, {0} > {1}'.format(algorithm_total_weight, manual_total_weight));
+    }
+
+
+
 
 </script>
 
