@@ -8,9 +8,31 @@
 	[0.75, 0.75, 0.75, 0.9, 0.75, 0.75, 0.75, 0.75],
     ]);
 
+    var graphWithWeight = new Graph([
+	[0, 0],
+	[1.1, 1],
+	[-0.9, -100000000],
+    ]);
+
+    var graphWithWeight = new Graph([
+	[1, 1.2, 1.2, 1.2, 0, 0, 1.2, 0],
+	[1, 2, 2, 1.5, 1.2, 1.5, 1.2, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1],
+    ]);
+
     var startWithWeight = graphWithWeight.grid[1][0];
-    var endWithWeight = graphWithWeight.grid[1][7];
+    var max_y = graphWithWeight.grid[1].length - 1;
+    console.log("max_y");
+    console.log(max_y);
+    var endWithWeight = graphWithWeight.grid[1][max_y];
     var resultWithWeight = astar.search(graphWithWeight, startWithWeight, endWithWeight);
+    var manual_path = [];
+    for (var i=0; i<=max_y; i++) {
+      var node = graphWithWeight.grid[2][i];
+      manual_path.push(node);
+    }
+    manual_path.push(graphWithWeight.grid[1][max_y]);
+    /*
     var manual_path = [
       graphWithWeight.grid[2][0],
       graphWithWeight.grid[2][1],
@@ -22,6 +44,7 @@
       graphWithWeight.grid[2][7],
       graphWithWeight.grid[1][7],
       ];
+    */
 
     function getWeight(path) {
       var total = 0;
